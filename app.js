@@ -10,7 +10,7 @@ class App {
   constructor() {
     //localStorage.setItem('test', JSON.stringify(['123']) );
     //console.log (JSON.parse(localStorage.getItem('test')));
-    this.notes = JSON.parse(localStorage.getItem('notes')) [] {};
+    this.notes = JSON.parse(localStorage.getItem('notes')) || {};
     console.log(this.notes);
     this.selectedNoteId = "";
     this.miniSidebar = true;
@@ -128,7 +128,7 @@ class App {
     if (text != "") {
       const newNote = new Note(cuid(), title, text);
       this.notes = [...this.notes, newNote];
-      this.displayNotes();
+      this.render();
     }
   }
 
@@ -140,12 +140,12 @@ class App {
       }
       return note;
     });
-    this.displayNotes();
+    this.render();
   }
 
   deleteNote(id) {
     this.notes = this.notes.filter((note) => note.id != id);
-    this.displayNotes();
+    this.render();
   }
 
   handleMouseOverNote(element) {
@@ -178,21 +178,17 @@ class App {
     }
   }
 
-  // onmouseover="app.handleMouseOverNote(this)" onmouseout="app.handleMouseOutNote(this)"
-
   saveNotes(){
-    localStorage.setItem('notes', JSON.stringify(['this notes']) );
+    localStorage.setItem('notes', JSON.stringify('this.notes'));
   }
 
-  render{
+  render () {
     this.saveNotes();
     this.displayNotes();
   }
 
   displayNotes() {
-    this.$notes.innerHTML = this.notes
-      .map(
-        (note) =>
+    this.$notes.innerHTML = this.notes.map((note) =>
           `
         <div class="note" id="${note.id}">
           <span class="material-icons check-circle">check_circle</span>
