@@ -66,7 +66,7 @@
     </nav>
     <main>
       <div class="sidebar">
-        <div class="sidebar-item">
+        <div class="sidebar-item active-item">
           <span class="material-icons-outlined hover active">lightbulb</span>
           <span class="sidebar-text">Notes</span>
         </div>
@@ -182,9 +182,14 @@
         <div class="modal-content">
           <div class="form-container">
             <form class="form" id="modal-form">
-              <input type="text" id="modal-title" class="note-title" placeholder="Title" />
               <input
-              id="modal-text"
+                type="text"
+                id="modal-title"
+                class="note-title"
+                placeholder="Title"
+              />
+              <input
+                id="modal-text"
                 class="note-text"
                 type="text"
                 placeholder="Take a note..."
@@ -240,7 +245,7 @@
                     <span class="tooltip-text">Redo</span>
                   </div>
                 </div>
-                <button class="close-btn">Close</button>
+                <button class="close-btn" id="modal-btn">Close</button>
               </div>
             </form>
           </div>

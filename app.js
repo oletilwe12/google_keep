@@ -8,8 +8,12 @@ class Note {
 
 class App {
   constructor() {
-    this.notes = [new Note("abc1", "test title", "test text")];
+    //localStorage.setItem('test', JSON.stringify(['123']) );
+    //console.log (JSON.parse(localStorage.getItem('test')));
+    this.notes = JSON.parse(localStorage.getItem('notes')) [] {};
+    console.log(this.notes);
     this.selectedNoteId = "";
+    this.miniSidebar = true;
 
     this.$activeForm = document.querySelector(".active-form");
     this.$inactiveForm = document.querySelector(".inactive-form");
@@ -21,6 +25,8 @@ class App {
     this.$modalForm = document.querySelector("#modal-form");
     this.$modalTitle = document.querySelector("#modal-title");
     this.$modalText = document.querySelector("#modal-text");
+    this.$closeModalForm = document.querySelector("#modal-btn");
+    this.$sidebar = document.querySelector(".sidebar");
 
     this.addEventListeners();
     this.displayNotes();
@@ -40,6 +46,17 @@ class App {
       const text = this.$noteText.value;
       this.addNote({ title, text });
       this.closeActiveForm();
+    });
+
+    this.$modalForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+
+    this.$sidebar.addEventListener("mouseover", (event) => {
+      this.handleToggleSidebar();
+    });
+    this.$sidebar.addEventListener("mouseout", (event) => {
+      this.handleToggleSidebar();
     });
   }
 
@@ -82,7 +99,13 @@ class App {
   }
   closeModal(event) {
     const isModalFormClickedOn = this.$modalForm.contains(event.target);
-    if (!isModalFormClickedOn && this.$modal.classList.contains("open-modal")) {
+    const isCloseModalBtnClickedOn = this.$closeModalForm.contains(
+      event.target
+    );
+    if (
+      (!isModalFormClickedOn || isCloseModalBtnClickedOn) &&
+      this.$modal.classList.contains("open-modal")
+    ) {
       this.editNote(this.selectedNoteId, {
         title: this.$modalTitle.value,
         text: this.$modalText.value
@@ -140,7 +163,31 @@ class App {
     $noteFooter.style.visibility = "hidden";
   }
 
+  handleToggleSidebar() {
+    if (this.miniSidebar) {
+      this.$sidebar.style.width = "250px";
+      this.$sidebar.classList.add("sidebar-hover");
+      this.$sidebar
+        .querySelector(".active-item")
+        .classList.add("sidebar-hover");
+      this.miniSidebar = false;
+    } else {
+      this.$sidebar.style.width = "80px";
+      this.$sidebar.classList.remove("sidebar-hover");
+      this.miniSidebar = true;
+    }
+  }
+
   // onmouseover="app.handleMouseOverNote(this)" onmouseout="app.handleMouseOutNote(this)"
+
+  saveNotes(){
+    localStorage.setItem('notes', JSON.stringify(['this notes']) );
+  }
+
+  render{
+    this.saveNotes();
+    this.displayNotes();
+  }
 
   displayNotes() {
     this.$notes.innerHTML = this.notes
