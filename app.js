@@ -10,7 +10,7 @@ class App {
   constructor() {
     //localStorage.setItem('test', JSON.stringify(['123']) );
     //console.log (JSON.parse(localStorage.getItem('test')));
-    this.notes = JSON.parse(localStorage.getItem('notes')) || {};
+    this.notes = JSON.parse(localStorage.getItem('notes')) || [];
     console.log(this.notes);
     this.selectedNoteId = "";
     this.miniSidebar = true;
@@ -179,7 +179,7 @@ class App {
   }
 
   saveNotes(){
-    localStorage.setItem('notes', JSON.stringify('this.notes'));
+    localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 
   render () {
