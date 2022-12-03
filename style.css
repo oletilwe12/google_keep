@@ -39,7 +39,7 @@
   visibility: visible;
 }
 
-/* NAVBAR STYLES */
+/* navbar */
 
 nav {
   display: flex;
@@ -91,9 +91,8 @@ input:focus {
   display: flex;
 }
 
-/* MAIN SECTION STYLES */
 
-/* SIDEBAR */
+/* sidebar */
 .sidebar {
   position: fixed;
   left: 0;
@@ -152,7 +151,7 @@ input:focus {
   background-color: #fef0c3;
 }
 
-/* MAIN FORM */
+/* form */
 .form-container {
   background: #fff;
   max-width: 598px;
@@ -221,7 +220,7 @@ input:focus {
   font-size: 1.1rem;
 }
 
-/* ALL NOTES */
+/* notes */
 .notes {
   display: flex;
   justify-content: center;
@@ -265,7 +264,7 @@ input:focus {
   visibility: hidden;
 }
 
-/* MODAL CONTENT */
+/* modal */
 .modal {
   position: fixed;
   top: 0;
@@ -286,4 +285,10 @@ input:focus {
 
 .open-modal {
   visibility: visible;
+}
+
+
+@media screen and (max-width: 600px)
+{
+  h1
 }
